@@ -1,0 +1,3136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Operator's Playbook | Harbor Foodservice</title>
+<meta name="description" content="A working playbook for operators who do not want to overextend, and do not want to be caught flat. Persistent improvements that pay off whether the surge touches you or not.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Oswald:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0d0f14;
+  --bg-elevated: #141822;
+  --bg-deeper: #080b12;
+  --bg-header: #0d111c;
+  --border: #2a3444;
+  --border-strong: #3a4458;
+  --text: #dde3ec;
+  --text-strong: #ffffff;
+  --text-display: #c8ddf0;
+  --text-muted: #8899b0;
+  --text-dim: #5a7a98;
+  --color-blue: #1e6fd9;
+  --color-accent: #3ab54a;
+  --color-amber: #e07820;
+  --color-danger: #E40020;
+  --lane-discoverability: #1e6fd9;
+  --lane-readiness: #3ab54a;
+  --lane-infrastructure: #e07820;
+  --surge: #e07820;
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-numeric: 'Oswald', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --max-width: 1080px;
+  --max-width-narrow: 720px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.container-narrow {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Top bar */
+.topbar {
+  border-bottom: 2px solid var(--color-accent);
+  padding: 16px 0;
+  background: var(--bg-header);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+  background: rgba(13, 17, 28, 0.94);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.topbar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar-logo img {
+  height: 80px;
+  width: auto;
+  display: block;
+}
+
+/* Hero */
+.hero {
+  padding: 96px 0 48px;
+  background: linear-gradient(160deg, #111520 0%, #0d0f14 100%);
+  border-bottom: 2px solid var(--border);
+}
+
+.hero-back {
+  display: inline-block;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  transition: color 0.15s;
+}
+
+.hero-back:hover { color: var(--text-strong); }
+
+.hero-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(38px, 5.6vw, 64px);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: var(--text-display);
+  margin-bottom: 24px;
+  max-width: 24ch;
+}
+
+.hero-sub {
+  font-size: clamp(19px, 2vw, 22px);
+  line-height: 1.45;
+  color: var(--text-muted);
+  margin-bottom: 48px;
+  max-width: 38ch;
+  font-weight: 400;
+}
+
+.hero-body {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text);
+  max-width: 60ch;
+}
+
+.hero-body p { margin-bottom: 18px; }
+
+.hero-body p.emphasis {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.4;
+  font-weight: 700;
+  color: var(--text-strong);
+  margin: 36px 0 8px;
+  padding: 18px 24px;
+  border-left: 3px solid var(--color-amber);
+  border-bottom: 3px solid var(--color-amber);
+  background: rgba(224, 120, 32, 0.04);
+  border-radius: 0 8px 8px 0;
+}
+
+/* Hero pull quote (parent operator-quote treatment) */
+.hero-pullquote {
+  margin: 28px 0 40px;
+  padding: 4px 0 4px 22px;
+  border-left: 3px solid var(--color-blue);
+  max-width: 60ch;
+}
+
+.hero-pullquote p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(18px, 2vw, 24px);
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.hero-pullquote .attribution {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0;
+}
+
+/* Hero framing copy after pull quote */
+.hero-framing {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text);
+  max-width: 60ch;
+  margin-bottom: 16px;
+}
+
+.hero-framing p { margin-bottom: 18px; }
+
+.hero-framing p.framing-turn {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--text-strong);
+  margin-top: 24px;
+}
+
+.hero-list {
+  list-style: disc;
+  padding: 0 0 0 22px;
+  margin: 8px 0 22px;
+}
+
+.hero-list li {
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--text);
+  padding: 0;
+  margin-bottom: 4px;
+}
+
+.hero-list li::marker {
+  color: var(--color-accent);
+}
+
+.hero-aside {
+  font-size: 14px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* Hero stats strip (parent stats-bar pattern, three cells) */
+.hero-stats {
+  margin-top: 8px;
+  background: var(--bg-deeper);
+  border: 1px solid var(--border);
+  border-top: 1px solid var(--color-accent);
+  border-bottom: 1px solid var(--color-accent);
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.hero-stat {
+  padding: 24px 24px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+
+.hero-stat:last-child { border-right: none; }
+
+.hero-stat .hs-callout {
+  font-family: var(--font-display);
+  font-size: clamp(15px, 1.4vw, 17px);
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--text-strong);
+  margin-bottom: 8px;
+}
+
+.hero-stat .hs-label {
+  font-family: var(--font-body);
+  letter-spacing: 0.04em;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--hs-color);
+  text-transform: uppercase;
+}
+
+.hero-stat[data-lane="discoverability"] { --hs-color: var(--lane-discoverability); }
+.hero-stat[data-lane="readiness"] { --hs-color: var(--lane-readiness); }
+.hero-stat[data-lane="infrastructure"] { --hs-color: var(--lane-infrastructure); }
+
+@media (max-width: 720px) {
+  .hero-stats { grid-template-columns: 1fr; }
+  .hero-stat { border-right: none; border-bottom: 1px solid var(--border); }
+  .hero-stat:last-child { border-bottom: none; }
+}
+
+/* Setup section (parent "Meet the Super Tourist" pattern) */
+.setup {
+  padding: 88px 0 16px;
+  text-align: left;
+}
+
+.setup-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.setup-eyebrow .bracket {
+  color: var(--color-accent);
+  margin: 0 6px;
+  font-weight: 800;
+}
+
+.setup h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(30px, 4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-display);
+  text-align: left;
+  margin-bottom: 14px;
+  max-width: 24ch;
+}
+
+.setup-divider {
+  width: 48px;
+  height: 3px;
+  background: var(--color-accent);
+  margin: 16px 0 40px;
+  border-radius: 2px;
+}
+
+.setup-body {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text);
+  max-width: 62ch;
+  margin: 0;
+}
+
+.setup-body p { margin-bottom: 20px; }
+
+.setup-body p.setup-signature {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-strong);
+  margin: 28px 0 0;
+}
+
+.setup-body p.setup-pivot {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.4;
+  color: var(--text-strong);
+  margin: 36px 0 28px;
+}
+
+.setup-list {
+  list-style: none;
+  padding: 0 0 0 32px;
+  margin: 8px 0 28px;
+}
+
+.setup-list li {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.setup-list li:first-child { padding-top: 8px; }
+.setup-list li:last-child { border-bottom: none; padding-bottom: 8px; }
+
+.setup-list-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-blue);
+  margin-bottom: 6px;
+}
+
+.setup-list-body {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* Ranking */
+.ranking, .strategy {
+  padding: 80px 0;
+  border-bottom: 2px solid var(--border);
+}
+
+.section-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-bottom: 18px;
+}
+
+.ranking h2, .strategy h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(30px, 3.8vw, 42px);
+  line-height: 1.12;
+  letter-spacing: -0.018em;
+  color: var(--text-display);
+  margin-bottom: 20px;
+  max-width: 24ch;
+}
+
+.ranking-lead {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text-muted);
+  max-width: 60ch;
+  margin-bottom: 16px;
+}
+
+.ranking-lead.prompt {
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 36px;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.tile {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px 24px 22px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s, background 0.2s, box-shadow 0.25s;
+  position: relative;
+  user-select: none;
+}
+
+.tile:hover {
+  border-color: var(--border-strong);
+  background: #1a1f2c;
+  transform: translateY(-1px);
+}
+
+.tile.ranked {
+  border-color: var(--lane-color);
+  border-left: 3px solid var(--lane-color);
+  border-bottom: 3px solid var(--lane-color);
+  background: #1a1f2c;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3);
+}
+
+.tile-rank {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  font-family: var(--font-numeric);
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--lane-color);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.tile.ranked .tile-rank { opacity: 1; }
+
+.tile-headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+  color: var(--text-strong);
+}
+
+.tile-category {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 10px;
+  color: var(--lane-color);
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+.tile-body {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.tile[data-lane="discoverability"] { --lane-color: var(--lane-discoverability); }
+.tile[data-lane="readiness"] { --lane-color: var(--lane-readiness); }
+.tile[data-lane="infrastructure"] { --lane-color: var(--lane-infrastructure); }
+
+.skip-link {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-family: var(--font-body);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.skip-link:hover { color: var(--text-muted); }
+
+/* Re-rank inline link */
+.rerank-row {
+  margin-top: 12px;
+  margin-bottom: 0;
+  min-height: 24px;
+}
+
+.rerank {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-family: var(--font-body);
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  padding: 0;
+}
+
+.rerank:hover { color: var(--text-muted); }
+
+/* Recipe (justified strategy view) */
+.recipe {
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border-strong);
+}
+
+.recipe-intro {
+  margin-bottom: 28px;
+}
+
+.recipe-lead {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text);
+  max-width: 62ch;
+}
+
+.recipe-lead .lane-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.recipe-lead .lane-1 { color: var(--lane-discoverability); }
+.recipe-lead .lane-2 { color: var(--lane-readiness); }
+.recipe-lead .lane-3 { color: var(--lane-infrastructure); }
+
+.recipe-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 36px;
+  counter-reset: recipe-counter;
+}
+
+.recipe-item {
+  counter-increment: recipe-counter;
+  position: relative;
+  padding: 22px 22px 22px 64px;
+  margin-bottom: 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: opacity 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.recipe-item::before {
+  content: counter(recipe-counter);
+  position: absolute;
+  left: 22px;
+  top: 22px;
+  font-family: var(--font-numeric);
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--lane-color);
+}
+
+.recipe-item[data-lane="discoverability"] { --lane-color: var(--lane-discoverability); }
+.recipe-item[data-lane="readiness"] { --lane-color: var(--lane-readiness); }
+.recipe-item[data-lane="infrastructure"] { --lane-color: var(--lane-infrastructure); }
+
+.recipe-item.deselected {
+  opacity: 0.45;
+  background: var(--bg-deeper);
+}
+
+.recipe-item.deselected .recipe-headline {
+  text-decoration: line-through;
+  text-decoration-color: var(--text-dim);
+}
+
+.recipe-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.recipe-head-left { flex: 1; min-width: 0; }
+
+.recipe-lane-chip {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lane-color);
+  margin-bottom: 6px;
+}
+
+.recipe-headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--text-strong);
+}
+
+.recipe-toggle {
+  flex-shrink: 0;
+  background: none;
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.recipe-toggle:hover {
+  border-color: var(--text-muted);
+  color: var(--text);
+}
+
+.recipe-item.deselected .recipe-toggle {
+  border-color: var(--lane-color);
+  color: var(--lane-color);
+}
+
+.recipe-takeaway {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 10px;
+  max-width: 60ch;
+}
+
+.recipe-why {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text);
+  padding-left: 14px;
+  border-left: 2px solid var(--lane-color);
+  max-width: 60ch;
+}
+
+.recipe-why-label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.recipe-anchor {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--border-strong);
+  padding-bottom: 1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.recipe-anchor:hover {
+  color: var(--lane-color);
+  border-color: var(--lane-color);
+}
+
+.recipe-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.recipe-btn {
+  background: none;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 12px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.25s;
+}
+
+.recipe-btn:hover {
+  background: var(--bg-elevated);
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.recipe-status {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+  min-height: 1em;
+}
+
+/* Lane reference (canonical scannable layer) - container-only, lane styles unchanged */
+.lane-reference {
+  display: block;
+  padding-top: 0;
+  padding-bottom: 96px;
+}
+
+/* Lane sections */
+.lane {
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.lane-header {
+  margin-bottom: 0;
+  max-width: 100%;
+}
+
+/* Lane as collapsible row */
+.lane-toggle {
+  display: flex;
+  scroll-margin-top: 88px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 20px 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: background 0.18s;
+}
+
+.lane-toggle:hover {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.lane-toggle:hover .lane-toggle-icon {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.lane-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+.lane-header-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.lane-toggle-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--border-strong);
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--text-muted);
+  transition: transform 0.25s, border-color 0.2s, color 0.2s;
+}
+
+.lane-toggle[aria-expanded="true"] .lane-toggle-icon {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: rotate(45deg);
+}
+
+.lane-body {
+  overflow: hidden;
+}
+
+.lane-body[data-state="closed"] {
+  max-height: 0;
+}
+
+.lane-body[data-state="open"] {
+  max-height: none;
+  padding-top: 24px;
+}
+
+.lane-marker {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lane-color);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lane-marker::before {
+  content: "";
+  width: 36px;
+  height: 3px;
+  background: var(--lane-color);
+  border-radius: 2px;
+}
+
+.lane-headline {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(22px, 2.4vw, 28px);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--text-display);
+  margin-bottom: 6px;
+}
+
+.lane-frame {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.lane[data-lane="discoverability"] { --lane-color: var(--lane-discoverability); }
+.lane[data-lane="readiness"] { --lane-color: var(--lane-readiness); }
+.lane[data-lane="infrastructure"] { --lane-color: var(--lane-infrastructure); }
+
+/* Section (scannable + explorable) */
+.section {
+  padding: 36px 0 40px;
+  scroll-margin-top: 152px;
+}
+
+.section + .section { border-top: 1px solid var(--border); }
+
+.section-headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  margin-bottom: 16px;
+  max-width: 28ch;
+  color: var(--text-strong);
+}
+
+.section-frame {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text);
+  max-width: 62ch;
+  margin-bottom: 24px;
+}
+
+.section-ratings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 4px 0 18px;
+  margin-bottom: 22px;
+  font-size: 14px;
+}
+
+.rating-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.rating-label {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 10px;
+  color: var(--text-dim);
+  font-weight: 700;
+}
+
+.rating-value {
+  color: var(--text-strong);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.section-takeaway {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  max-width: 60ch;
+  font-style: italic;
+}
+
+.expand-btn {
+  background: none;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 12px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s, box-shadow 0.25s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.expand-btn:hover {
+  background: var(--bg-elevated);
+  border-color: var(--lane-color, var(--text-muted));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.expand-btn .arrow {
+  display: inline-block;
+  transition: transform 0.2s;
+  font-size: 12px;
+}
+
+.section.expanded .expand-btn .arrow { transform: rotate(90deg); }
+.section.expanded .expand-label-closed { display: none; }
+.section:not(.expanded) .expand-label-open { display: none; }
+
+.explorable {
+  display: none;
+  padding-top: 36px;
+  margin-top: 28px;
+  border-top: 1px dashed var(--border);
+}
+
+.section.expanded .explorable { display: block; }
+
+.explorable h4 {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 11px;
+  color: var(--lane-color, var(--text-muted));
+  font-weight: 700;
+  margin-bottom: 14px;
+  margin-top: 32px;
+}
+
+.explorable h4:first-child { margin-top: 0; }
+
+.explorable p {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+  max-width: 62ch;
+  color: var(--text);
+}
+
+.explorable .work-step {
+  margin-bottom: 22px;
+  padding-left: 20px;
+  border-left: 2px solid var(--border);
+}
+
+.explorable .work-step strong {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  display: block;
+  margin-bottom: 6px;
+  color: var(--text-strong);
+}
+
+.explorable .work-step p {
+  font-size: 15px;
+  margin-bottom: 0;
+  color: var(--text-muted);
+}
+
+.format-note {
+  background: var(--bg-deeper);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--lane-color, var(--text-muted));
+  border-bottom: 3px solid var(--lane-color, var(--text-muted));
+  padding: 18px 22px;
+  margin: 24px 0;
+  border-radius: 0 10px 10px 0;
+}
+
+.format-note p {
+  font-size: 15px;
+  margin-bottom: 0;
+  color: var(--text-muted);
+}
+
+/* Safe Surge Prep — conditional pocket inside each lane */
+.safe-surge {
+  margin: 0 0 32px;
+}
+
+.safe-surge-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--color-blue);
+  border-radius: 10px;
+  padding: 18px 22px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  text-align: left;
+  color: var(--text);
+  transition: background 0.18s, border-color 0.18s;
+}
+
+.safe-surge-toggle:hover {
+  background: rgba(30, 111, 217, 0.08);
+}
+
+.safe-surge-label {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-strong);
+}
+
+.safe-surge-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-blue);
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--color-blue);
+  transition: transform 0.25s;
+}
+
+.safe-surge-toggle[aria-expanded="true"] .safe-surge-icon {
+  transform: rotate(45deg);
+}
+
+/* Speed menu (readiness lane) keeps the amber accent */
+.safe-surge-toggle[aria-controls="safe-surge-readiness"] {
+  border-color: var(--color-amber);
+}
+.safe-surge-toggle[aria-controls="safe-surge-readiness"]:hover {
+  background: rgba(224, 120, 32, 0.08);
+}
+.safe-surge-toggle[aria-controls="safe-surge-readiness"] .safe-surge-icon {
+  border-color: var(--color-amber);
+  color: var(--color-amber);
+}
+#safe-surge-readiness .work-step {
+  border-left-color: var(--color-amber);
+}
+
+.safe-surge-body {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+
+.safe-surge-body[data-state="open"] {
+  max-height: none;
+  padding-top: 28px;
+}
+
+.safe-surge-topic {
+  padding: 24px 0;
+}
+
+.safe-surge-topic + .safe-surge-topic {
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+}
+
+.safe-surge-topic h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 22px;
+  color: var(--text-display);
+  letter-spacing: -0.01em;
+  margin: 0 0 14px;
+}
+
+.safe-surge-topic .safe-surge-frame {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0 0 22px;
+}
+
+.safe-surge-topic .work-step {
+  margin: 18px 0;
+  padding-left: 18px;
+  border-left: 2px solid var(--color-blue);
+}
+
+.safe-surge-topic .work-step strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text-strong);
+  margin-bottom: 6px;
+}
+
+.safe-surge-topic .work-step p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0;
+}
+
+.connection {
+  font-size: 15px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 28px;
+}
+
+.collapse-btn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-family: var(--font-body);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 28px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.collapse-btn:hover { color: var(--text-muted); }
+
+/* Lane summary */
+.lane-summary {
+  margin-top: 48px;
+  padding: 28px 32px;
+  background: var(--bg-deeper);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--lane-color);
+  border-bottom: 3px solid var(--lane-color);
+}
+
+.lane-summary-label {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 11px;
+  color: var(--text-dim);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.lane-summary p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* Surge readiness */
+.surge {
+  padding: 96px 0 80px;
+  background: var(--bg-deeper);
+  border-top: 8px solid var(--surge);
+  box-shadow: inset 0 24px 48px -24px rgba(224, 120, 32, 0.18);
+}
+
+.surge-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 11px;
+  color: var(--surge);
+  margin-bottom: 18px;
+}
+
+.surge h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(30px, 3.8vw, 42px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--text-display);
+  margin-bottom: 24px;
+  max-width: 22ch;
+}
+
+.surge-lead {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 62ch;
+  margin-bottom: 20px;
+}
+
+.surge-lead strong {
+  color: var(--text-strong);
+  font-weight: 600;
+}
+
+.surge-prompt {
+  font-size: 17px;
+  color: var(--text-strong);
+  font-weight: 500;
+  margin: 32px 0 24px;
+  max-width: 62ch;
+}
+
+.path-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.path-check {
+  display: flex;
+  gap: 16px;
+  padding: 18px 22px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, transform 0.2s, box-shadow 0.25s;
+  align-items: flex-start;
+}
+
+.path-check:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+}
+
+.path-check.checked {
+  border-color: var(--surge);
+  border-left: 3px solid var(--surge);
+  border-bottom: 3px solid var(--surge);
+  background: rgba(228, 0, 32, 0.06);
+  box-shadow: 0 6px 24px rgba(228, 0, 32, 0.12);
+}
+
+.path-check input {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--border-strong);
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+  position: relative;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.path-check.checked input {
+  background: var(--surge);
+  border-color: var(--surge);
+}
+
+.path-check.checked input::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.path-check-content { flex: 1; }
+
+.path-check-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  margin-bottom: 4px;
+  color: var(--text-strong);
+}
+
+.path-check-sub {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.surge-skip {
+  margin-bottom: 32px;
+}
+
+.surge-reflection {
+  display: none;
+  padding: 24px 28px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--surge);
+  border-left: 3px solid var(--surge);
+  border-bottom: 3px solid var(--surge);
+  border-radius: 12px;
+  margin-bottom: 48px;
+}
+
+.surge-reflection.active { display: block; }
+
+.surge-reflection p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.surge-reflection.none-selected p {
+  color: var(--text-muted);
+}
+
+.surge-bets {
+  display: none;
+}
+
+.surge-bets.active { display: block; }
+
+.surge-bet {
+  padding: 32px 0;
+  border-top: 1px solid var(--border);
+}
+
+.surge-bet:first-child { border-top: 1px solid var(--surge); }
+
+.surge-bet[data-hidden="true"] { display: none; }
+
+.path-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.path-tag {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 5px 11px;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  color: var(--text-muted);
+}
+
+.surge-bet .section-headline { font-size: 24px; }
+
+.surge-bet .expand-btn:hover { border-color: var(--surge); }
+.surge-bet .explorable h4 { color: var(--surge); }
+
+/* Closing */
+.closing {
+  padding: 96px 0;
+  border-top: 2px solid var(--border);
+  background: var(--bg-deeper);
+}
+
+.closing h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(28px, 3.4vw, 38px);
+  line-height: 1.18;
+  letter-spacing: -0.018em;
+  color: var(--text-display);
+  margin-bottom: 20px;
+  max-width: 22ch;
+}
+
+.closing p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 60ch;
+  margin-bottom: 16px;
+}
+
+.closing-cta {
+  margin-top: 32px;
+  padding: 22px 26px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--color-accent);
+  border-bottom: 3px solid var(--color-accent);
+  border-radius: 12px;
+  display: inline-block;
+}
+
+.closing-cta p { margin-bottom: 0; color: var(--text); font-size: 15px; }
+
+/* Footer */
+footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--text-dim);
+  background: var(--bg-deeper);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-inner a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.footer-inner a:hover { color: var(--text-strong); }
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .hero { padding: 64px 0 56px; }
+  .ranking, .strategy, .lane, .setup { padding: 56px 0 32px; }
+  .surge, .closing { padding: 64px 0; }
+  .section { padding: 28px 0 32px; }
+  .section-ratings { gap: 16px; }
+  .topbar-inner { font-size: 13px; }
+  .surge-reflection { padding: 20px 22px; }
+  .lane-summary { padding: 22px 24px; }
+  .hero-stat { padding: 20px 20px; }
+  .setup-body p.setup-pivot { font-size: 18px; }
+  .recipe-item { padding: 18px 18px 18px 56px; }
+  .recipe-item::before { left: 18px; top: 18px; font-size: 22px; }
+  .recipe-head { flex-direction: column; gap: 8px; }
+  .recipe-toggle { align-self: flex-start; }
+}
+
+/* Print-to-PDF: only the recipe renders */
+@media print {
+  @page { margin: 0.5in; }
+  body { background: #ffffff !important; color: #111111 !important; font-size: 12pt; }
+  .topbar, .hero, .setup, .lane-reference, .surge, .closing, footer,
+  .tiles, .ranking-lead, .section-eyebrow, .strategy h2, .rerank-row,
+  .recipe-actions, .recipe-toggle, .recipe-anchor { display: none !important; }
+  .strategy { padding: 0 !important; border: none !important; }
+  .recipe { display: block !important; margin: 0 !important; padding: 0 !important; border: none !important; }
+  .recipe-intro { margin-bottom: 18pt; }
+  .recipe-lead { color: #111111 !important; font-size: 12pt; max-width: none; }
+  .recipe-lead .lane-name { color: #111111 !important; }
+  .recipe-list { margin: 0; }
+  .recipe-item {
+    background: #ffffff !important;
+    border: 1px solid #cccccc !important;
+    border-left: 3px solid #888888 !important;
+    border-radius: 4px;
+    padding: 10pt 10pt 10pt 38pt !important;
+    margin-bottom: 8pt !important;
+    page-break-inside: avoid;
+    color: #111111 !important;
+  }
+  .recipe-item.deselected { display: none !important; }
+  .recipe-item[data-lane="discoverability"] { border-left-color: #1e6fd9 !important; }
+  .recipe-item[data-lane="readiness"] { border-left-color: #3ab54a !important; }
+  .recipe-item[data-lane="infrastructure"] { border-left-color: #e07820 !important; }
+  .recipe-item::before { color: #555555 !important; left: 10pt !important; top: 10pt !important; font-size: 16pt !important; }
+  .recipe-headline { color: #111111 !important; font-size: 13pt !important; }
+  .recipe-lane-chip { color: #555555 !important; }
+  .recipe-takeaway { color: #555555 !important; font-size: 11pt; max-width: none; }
+  .recipe-why { color: #111111 !important; max-width: none; padding-left: 10pt !important; border-left-color: #999999 !important; font-size: 11pt; }
+  .recipe-why-label { color: #555555 !important; }
+  .recipe::before {
+    content: "Your World Cup Operator's Playbook — Strategy Recipe";
+    display: block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    font-size: 18pt;
+    color: #111111;
+    margin-bottom: 6pt;
+    border-bottom: 2pt solid #3ab54a;
+    padding-bottom: 4pt;
+  }
+}
+
+/* Peekaboo (collapsible reveal) */
+.peekaboo-wrap {
+  position: relative;
+  margin: 24px 0 0;
+}
+
+.peekaboo-content {
+  /* Open state: full height */
+  max-height: none;
+  overflow: visible;
+  transition: max-height 0.35s ease;
+}
+
+.peekaboo-content[data-state="closed"] {
+  max-height: 90px;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+}
+
+.peekaboo-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin: -8px auto 32px;
+  background: var(--bg);
+  border: 2px solid var(--color-blue);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+
+.peekaboo-toggle:hover {
+  background: rgba(30, 111, 217, 0.08);
+  transform: translateY(-1px);
+}
+
+.peekaboo-icon {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1;
+  color: var(--color-accent);
+  transition: transform 0.25s, color 0.2s;
+  display: inline-block;
+}
+
+.peekaboo-toggle[aria-expanded="true"] {
+  border-color: var(--color-accent);
+  margin-top: 32px;
+}
+
+.peekaboo-toggle[aria-expanded="true"] .peekaboo-icon {
+  color: var(--color-blue);
+  transform: rotate(45deg);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Ticker tape */
+.ticker {
+  background: var(--color-blue);
+  border-top: 1px solid var(--color-accent);
+  border-bottom: 1px solid var(--color-accent);
+  overflow: hidden;
+  padding: 14px 0;
+}
+
+.ticker-track {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  animation: ticker-scroll 40s linear infinite;
+}
+
+.ticker-strip {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.ticker-item {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ffffff;
+  white-space: nowrap;
+  padding: 0 24px;
+}
+
+.ticker-sep {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-accent);
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+}
+
+/* Sticky section reader (appears when a section is expanded) */
+.section-reader {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  transform: translateY(-110%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.28s ease, opacity 0.2s ease;
+  background: rgba(13, 17, 28, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-strong);
+  border-top: 2px solid var(--lane-color, var(--color-accent));
+  font-family: var(--font-body);
+}
+
+.section-reader.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.section-reader-inner {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 12px 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-reader-title {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.section-reader-eyebrow {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--lane-color, var(--text-muted));
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.section-reader-headline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.2;
+  color: var(--text-strong);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.section-reader-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.section-reader-btn {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.section-reader-btn:hover {
+  background: var(--bg-elevated);
+  border-color: var(--lane-color, var(--text-muted));
+  color: var(--text-strong);
+}
+
+.section-reader-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.section-reader-btn:disabled:hover {
+  background: transparent;
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+.section-reader-btn--close {
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+.section-reader-arrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  padding: 6px 12px;
+}
+
+@media (max-width: 720px) {
+  .section-reader {
+    top: 56px;
+  }
+  .section-reader-inner {
+    padding: 10px 16px;
+    gap: 8px;
+  }
+  .section-reader-headline {
+    font-size: 15px;
+  }
+  .section-reader-eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+  }
+  .section-reader-btn {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+  /* On narrow screens, drop the close-text button; rely on Prev/Next + the inline "Close this section" inside the explorable */
+  .section-reader-btn--close-text {
+    display: none;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div class="topbar-logo">
+      <img src="assets/harbor-solutions-logo.png" alt="Harbor Solutions">
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container-narrow">
+    <a href="https://harborfoodservicesoccer26.com" class="hero-back">← Back to Harbor 2026</a>
+    <h1>Don't Bet on the World Cup.<br><span style="color: var(--color-blue);">Bet</span> on <span style="color: var(--color-accent);">Your Restaurant</span>.</h1>
+
+    <div class="hero-pullquote">
+      <p>Guests are coming, let's get our house in order.</p>
+    </div>
+
+    <div class="hero-framing">
+      <p>You already know what tourism season does to a restaurant. It shifts the rhythm. Traffic slows, timing stretches, guests arrive in uneven waves, and regulars adjust or disappear. What's coming this June is the same pressure, only bigger and less predictable.</p>
+
+      <p>Some operators have a clear read on how it'll hit them and are planning accordingly. The rest of us know it's coming, but we've been burned by projections before, and the numbers we're seeing don't line up neatly enough to bet on. So we're left looking for somewhere to put our effort that pays off either way.</p>
+
+      <p>However it shows up at your door, we can wing it and ride it out, or <strong>we can use it as the deadline to invest in the lasting health of our restaurants</strong>.</p>
+
+      <ul class="hero-list">
+        <li>Refreshed <strong style="color: var(--color-blue);">menus</strong> built for <strong style="color: var(--color-blue);">margins</strong>.</li>
+        <li><strong style="color: var(--color-blue);">Infrastructure</strong> that holds: trained teams and equipment that doesn't fail.</li>
+        <li>A <strong style="color: var(--color-blue);">virtual storefront</strong> that's discoverable and appealing on a screen.</li>
+      </ul>
+
+      <p><em>These</em> are types of home improvements that will still be serving us at Christmas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER TAPE -->
+<section class="ticker" aria-label="Operator playbook plays">
+  <div class="ticker-track" aria-hidden="true">
+    <div class="ticker-strip">
+      <span class="ticker-item">Menu Refresh</span>
+      <span class="ticker-sep">|</span>
+      <span class="ticker-item">Product Substitution Planning</span>
+      <span class="ticker-sep">|</span>
+      <span class="ticker-item">Skill &amp; Team Development</span>
+      <span class="ticker-sep">|</span>
+      <span class="ticker-item">Equipment Tune-up</span>
+      <span class="ticker-sep">|</span>
+      <span class="ticker-item">Tech Stack Audit</span>
+      <span class="ticker-sep">|</span>
+      <span class="ticker-item">Google My Business</span>
+      <span class="ticker-sep">|</span>
+      <span class="ticker-item">Your Website</span>
+      <span class="ticker-sep">|</span>
+      <span class="ticker-item">Socials &amp; 3rd Party Platforms</span>
+      <span class="ticker-sep">|</span>
+    </div>
+    <div class="ticker-strip" aria-hidden="true">
+      <span class="ticker-item">Menu Refresh</span>
+      <span class="ticker-sep">|</span>
+      <span class="ticker-item">Product Substitution Planning</span>
+      <span class="ticker-sep">|</span>
+      <span class="ticker-item">Skill &amp; Team Development</span>
+      <span class="ticker-sep">|</span>
+      <span class="ticker-item">Equipment Tune-up</span>
+      <span class="ticker-sep">|</span>
+      <span class="ticker-item">Tech Stack Audit</span>
+      <span class="ticker-sep">|</span>
+      <span class="ticker-item">Google My Business</span>
+      <span class="ticker-sep">|</span>
+      <span class="ticker-item">Your Website</span>
+      <span class="ticker-sep">|</span>
+      <span class="ticker-item">Socials &amp; 3rd Party Platforms</span>
+      <span class="ticker-sep">|</span>
+    </div>
+  </div>
+</section>
+
+<!-- SETUP -->
+<section class="setup">
+  <div class="container-narrow">
+    <h2>There is no <span style="color: var(--color-blue);">Perfect</span><br>Only <span style="color: var(--color-accent);">Better</span></h2>
+    <div class="setup-divider"></div>
+
+    <div class="setup-body">
+      <p>The conversations I've been having with operators about this look mostly the same. We believe a surge of tourism is coming. We can't quite find ourselves in the projections. The numbers float around in ranges that don't tell any one of us how it actually shows up at our door. So we land in the same place: somewhere to put effort that pays off whether the surge breaks our way or doesn't.</p>
+
+      <p>No two of us are walking into this from the same place. Some are tight on margins, some on staff, some on time. Some have systems that work and a team that's set, but the equipment is showing its age. The work below is organized so you can scan it, find what fits, and skip what doesn't. Nobody finishes any of it. A menu refresh moves you to a better menu, not a perfect one. A tune-up makes the equipment last, not new. Whatever you take on lands you in a better spot than you started. That's the whole game.</p>
+
+      <p>Somewhere in the middle of this, you'll hit a question mark or a fork where you're not sure which way to go. That's what I'm here for.</p>
+
+      <p class="setup-signature">
+        Andy Cook<br>
+        Harbor Foodservice<br>
+        Restaurant Operations Advisor
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- LANE REFERENCE LAYER (canonical scannable content) -->
+<section class="lane-reference" id="lanes">
+
+  <!-- OPERATIONAL READINESS LANE -->
+  <section class="lane" data-lane="readiness" id="lane-readiness">
+    <div class="container-narrow">
+      <button type="button" class="lane-header lane-toggle" aria-expanded="false" aria-controls="lane-body-readiness">
+        <div class="lane-header-text">
+          <h2 class="lane-headline">MENU &amp; MARGINS.</h2>
+          <p class="lane-frame">Menu Updates | Product Substitution Planning</p>
+        </div>
+        <span class="lane-toggle-icon" aria-hidden="true">+</span>
+      </button>
+
+      <div class="lane-body" id="lane-body-readiness" data-state="closed">
+
+      <div class="safe-surge">
+        <button type="button" class="safe-surge-toggle" aria-expanded="false" aria-controls="safe-surge-readiness">
+          <span class="safe-surge-label">SAFE SURGE PREP: SPEED MENU</span>
+          <span class="safe-surge-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="safe-surge-body" id="safe-surge-readiness" data-state="closed">
+          <div class="safe-surge-topic">
+            <h4>Speed menu.</h4>
+            <p class="safe-surge-frame">A speed menu is a tighter version of the menu you already have, ready to shift into when the volume tells you to. Not a different menu, the same one with the items that slow the line set aside. The work is naming those items honestly before the surge tests you.</p>
+
+            <div class="work-step">
+              <strong>Pick the items that hold up.</strong>
+              <p>Walk your menu and mark the four to eight items doing the heavy lifting on a normal busy night. The ones that move fast, plate cleanly, and don't depend on a single specialist station. Those stay. Everything else is a candidate to set aside under pressure.</p>
+            </div>
+
+            <div class="work-step">
+              <strong>Decide the trigger.</strong>
+              <p>The speed menu only works if you've decided in advance when it goes in play. An hour of the day, a covers count, a manager's call. Pick one. The trigger has to be something the team can recognize without you in the room.</p>
+            </div>
+
+            <div class="work-step">
+              <strong>Walk the team through the switch.</strong>
+              <p>Run it through with the line and the front of house before you need it. Which items come down. How the POS reflects it. What servers say to a guest who asks for something that's not currently available. Five minutes of conversation now saves a service later.</p>
+            </div>
+
+            <div class="work-step">
+              <strong>Print the abbreviated version.</strong>
+              <p>If your menu is printed or laminated, have a speed-menu version ready to go. If it's digital or QR-based, have the toggle prepared in the system. The point is that switching shouldn't require improvisation in the moment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section: Menu Refresh -->
+      <article class="section" id="sec-menu" data-lane="readiness">
+        <h3 class="section-headline">Menu refresh.</h3>
+        <div class="section-ratings">
+          <div class="rating-item"><span class="rating-label">Investment</span><span class="rating-value">Low</span></div>
+          <div class="rating-item"><span class="rating-label">Effort</span><span class="rating-value">Moderate</span></div>
+        </div>
+
+        <p class="section-frame">Most operators inherited their menu and added to it over the years. A refresh is pruning what's losing money or slowing the line, repositioning what's underperforming, and rebalancing prices against what food and labor actually cost right now. The operators who do this work usually find their LTO opportunities revealed in the process. You can't see what's worth promoting until you can see your menu clearly.</p>
+        <button class="expand-btn"><span class="expand-label-closed">Walk me through it</span><span class="expand-label-open">Close this</span> <span class="arrow">›</span></button>
+
+        <div class="explorable">
+          <h4>Better practices</h4>
+          <p>Menu engineering and margin discipline are two related practices that most operators do at the same time, in the same conversation, because they reinforce each other. Engineering is about knowing your menu as a portfolio: which items make money, which move volume, which do both, which do neither. Margin discipline is about pricing the items you keep so the math actually works at current costs. Together, they're how you get from a menu you inherited to a menu you've decided on.</p>
+
+          <h4>The work, walked through</h4>
+
+          <div class="work-step">
+            <strong>Star and dog analysis.</strong>
+            <p>Pull a sales report covering at least the last three months. For every item, you have two numbers: how often it sells, and what its margin is when it does. Plot them. Stars sell often and have strong margins. Dogs sell rarely and have weak margins. Plowhorses sell often but have weak margins (your bread-and-butter). Puzzles have strong margins but don't sell (your hidden opportunities). Most operators have never done this. Doing it once changes how you look at the menu permanently.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>The honest cut.</strong>
+            <p>Dogs come off the menu. Puzzles get repositioned (better placement, better description, sometimes a small price adjustment) to see if they can become stars. Plowhorses get a margin look (can we adjust the recipe, the portion, or the price without losing the volume). Stars get protected. The cut is the hardest part because every dog has a regular who loves it. The math is the math.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>Cost reality, refreshed.</strong>
+            <p>When did you last cost out your menu against current vendor prices? If the answer is "more than six months ago," you're operating on stale margins. Re-cost your top twenty items minimum. The operators who do this regularly know exactly which items are quietly losing money. The ones who don't are guessing.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>The pricing structure question.</strong>
+            <p>Do you have a structure for how prices move, or do you change prices when something forces you to? A pricing structure means you've decided when to revisit prices (quarterly, semi-annually), what triggers a between-cycle change (a vendor increase over X percent), and how price changes get communicated to the team and the guest. Without a structure, you're reactive, and reactive pricing tends to fall behind costs.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>LTO opportunities, revealed.</strong>
+            <p>Once you can see your menu clearly, the LTOs surface on their own. A puzzle that's underperforming becomes the candidate for a featured promotion. A seasonal opportunity (PNW salmon in late spring, stone fruit in summer) becomes a deliberate add. An LTO calendar built from this kind of analysis is grounded; one built without it is guessing.</p>
+          </div>
+
+          <div class="format-note">
+            <p>The principles travel across formats. A coffee shop has a menu portfolio just like a full-service restaurant; a taco truck has stars and dogs in its smaller lineup. The math doesn't care about format. The cut conversation might be smaller for a leaner menu, but the work is the same.</p>
+          </div>
+
+          <h4>Where this connects</h4>
+          <p class="connection">This sets up the surge readiness work directly. The volume menu bet (a simplified version you can shift into when the room fills) is downstream of menu engineering; you can't simplify intelligently until you can see your menu clearly. The pricing structure also sets up the surge pricing posture: holding the line during the surge is easier when your normal pricing is already disciplined.</p>
+
+          <button class="collapse-btn">Close this section</button>
+        </div>
+      </article>
+
+      <!-- Section: Product Substitution Planning -->
+      <article class="section" id="sec-substitution" data-lane="readiness">
+        <h3 class="section-headline">Product substitution planning.</h3>
+        <div class="section-ratings">
+          <div class="rating-item"><span class="rating-label">Investment</span><span class="rating-value">Low</span></div>
+          <div class="rating-item"><span class="rating-label">Effort</span><span class="rating-value">Moderate</span></div>
+        </div>
+
+        <p class="section-frame">Most of us inherited an order guide and have been running it on autopilot ever since. Same brands, same SKUs, same pack sizes. The menu has changed, the costs have changed, and the order guide hasn't. There's usually 10-20% of margin sitting inside ingredients the guest never tastes individually, and the only reason it isn't ours yet is that nobody has sat down with the rep and asked the right questions in the right order.</p>
+        <button class="expand-btn"><span class="expand-label-closed">Walk me through it</span><span class="expand-label-open">Close this</span> <span class="arrow">›</span></button>
+
+        <div class="explorable">
+          <h4>Better practices</h4>
+          <p>Substitution planning is the discipline of treating your order guide like a portfolio you actively manage instead of a habit you keep. Two ideas do most of the work. The first is invisible ingredients: the inputs the guest never identifies on the plate (base sauces, fryer oil, flour, canned tomatoes, frozen basics, most spices). These are the swaps where exclusive-brand alternatives almost always make sense, because the conversion is invisible to the guest and the savings come straight off the plate cost. The second is speed-scratch: pre-prepped items that cost more per pound but cost less per plate once you account for labor, yield, and waste. Both work the same way at the rep conversation, and both fall apart without recipe-level math behind them.</p>
+
+          <h4>The work, walked through</h4>
+
+          <div class="work-step">
+            <strong>Top items, costed honestly.</strong>
+            <p>Pull your top five to ten items by weekly volume. For each one, list every ingredient with its current cost and the amount the recipe actually uses. This is the same costing pass that should be happening in a menu refresh; if you've already done it, you're starting here. The point is to see which ingredients are sitting underneath your highest-volume plates, because that's where a small per-unit savings turns into real money.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>Invisible ingredients, identified.</strong>
+            <p>Walk through those costed recipes and mark the inputs the guest can't pick out individually. Fryer oil. Flour. Base stocks. Canned tomatoes. Most spices. Frozen vegetables in a soup. The ones the guest does identify (your steak, your bread, your house dressing if you're known for it) come off the substitution list; those are brand decisions, not cost decisions. What's left is the swap pile.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>The rep conversation, structured.</strong>
+            <p>Bring the costed recipes and the swap pile to your rep. Ask two questions in order. First, where do they have an exclusive-brand alternative for what you're already buying? Exclusive brands are the same play as Kirkland at Costco; the savings come from cutting marketing spend out of the price, not from cutting quality. Second, where would speed-scratch beat scratch on total cost once labor and yield are in the math? On both questions, ask for the total cost picture, not just the unit price. A speed-scratch item that costs more per pound but saves twenty minutes of prep and runs at 100% yield can win on the plate.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>Test before you convert.</strong>
+            <p>Pick two or three swaps with the biggest expected impact and run them on actual recipes before you commit. Recalculate the plate cost with the new ingredient in place. Cook the dish. Taste it side by side with the original if you can. The math is the math, and so is the plate; if either one breaks, the swap doesn't go in. The ones that hold across both become permanent, and you extrapolate the same logic across the rest of the order guide from there.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>The order guide, on a calendar.</strong>
+            <p>The reason most order guides stagnate is that nobody owns them on a recurring basis. Put a quarterly review on the calendar with your rep. Same conversation, same questions, against current costs. Vendors release new exclusive brands and new speed-scratch options regularly; the operators who catch them early get the savings, and the ones who don't pay full price by default.</p>
+          </div>
+
+          <div class="format-note">
+            <p>The principle travels. A coffee shop has invisible ingredients (syrup bases, milk alternatives, the espresso blend behind the proprietary drinks) the same way a full-service kitchen does. A taco truck has fewer inputs but a sharper margin on each one, so the swap math hits harder per item. Speed-scratch shifts emphasis by format: a high-volume scratch kitchen has more to protect; a counter operation has more to gain. The conversation with the rep is the same in any of them.</p>
+          </div>
+
+          <h4>Where this connects</h4>
+          <p class="connection">This is the natural pair to the menu refresh. The refresh tells you which items are worth keeping; substitution planning tightens the cost on the ones that are. It also feeds the surge readiness work: a tighter order guide means a clearer picture of what holds when supply gets stressed, and which substitutions you've already vetted are available to lean on if a primary product gets thin.</p>
+
+          <button class="collapse-btn">Close this section</button>
+        </div>
+      </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFRASTRUCTURE LANE -->
+  <section class="lane" data-lane="infrastructure" id="lane-infrastructure">
+    <div class="container-narrow">
+      <button type="button" class="lane-header lane-toggle" aria-expanded="false" aria-controls="lane-body-infrastructure">
+        <div class="lane-header-text">
+          <h2 class="lane-headline">INFRASTRUCTURE.</h2>
+          <p class="lane-frame">Skill &amp; Team Development | Equipment Tune-up | Tech Stack Audit</p>
+        </div>
+        <span class="lane-toggle-icon" aria-hidden="true">+</span>
+      </button>
+
+      <div class="lane-body" id="lane-body-infrastructure" data-state="closed">
+
+      <div class="safe-surge">
+        <button type="button" class="safe-surge-toggle" aria-expanded="false" aria-controls="safe-surge-infrastructure">
+          <span class="safe-surge-label">SAFE SURGE PREP: OP HOUR FLEXIBILITY | ALCOHOL TRAINING</span>
+          <span class="safe-surge-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="safe-surge-body" id="safe-surge-infrastructure" data-state="closed">
+
+          <div class="safe-surge-topic">
+            <h4>Op hour flexibility.</h4>
+            <p class="safe-surge-frame">The surge doesn't run on your normal hours. International tourists eat later, drink later, and arrive in waves that don't match a typical Friday. Decide now which nights you'll extend, which days you'll add, and what the late-night version of your operation looks like. Easier than deciding it under pressure.</p>
+
+            <div class="work-step">
+              <strong>Map the windows.</strong>
+              <p>Pick the specific dates and hours you'll extend. Not "we'll see how it goes." A list of dates, a start and end time for each, a short read on what staffing looks like during them. Vague intentions don't survive contact with a real Friday night.</p>
+            </div>
+
+            <div class="work-step">
+              <strong>Sync the systems.</strong>
+              <p>Update Google Business Profile hours, online ordering windows, reservation system availability, and any third-party delivery hours to reflect the extended schedule. Tourists trust what their phone tells them more than what your sign says.</p>
+            </div>
+
+            <div class="work-step">
+              <strong>Trial run in April.</strong>
+              <p>Pick one Friday or Saturday in April, run the extended hours and the late-shift menu live, and watch where the friction shows up. The cost of finding it now is small. The cost of finding it on a real surge night is not.</p>
+            </div>
+          </div>
+
+          <div class="safe-surge-topic">
+            <h4>Alcohol training (where it applies).</h4>
+            <p class="safe-surge-frame">If your operation serves alcohol, the surge brings two pressures most operators underprepare for: a higher rate of guests already several drinks in by the time they reach you, and longer service stretches where staff fatigue erodes the discretion that keeps you on the right side of the line. A refresher before the surge starts is the cheapest piece of liability protection on this page.</p>
+
+            <div class="work-step">
+              <strong>MAST compliance, current.</strong>
+              <p>Confirm every staff member who serves alcohol has a current Mandatory Alcohol Server Training permit. Lapses happen quietly between team turnover and the day someone gets carded by an enforcement officer. Run the list now.</p>
+            </div>
+
+            <div class="work-step">
+              <strong>Refusal language, rehearsed.</strong>
+              <p>Walk the team through the words they'll use when they have to cut someone off. "I'm not going to be able to serve you another one tonight" is harder to say than to write. The team that's said it out loud in a calm room handles it better when the room isn't calm.</p>
+            </div>
+
+            <div class="work-step">
+              <strong>Escalation path, named.</strong>
+              <p>The server should never be alone in a refusal. Decide who they call (manager on shift, owner if applicable), what that person does, and what happens if the guest doesn't accept the refusal. The presence of a clear path is what lets a server hold the line.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+<!-- Section: Skill & Team Development -->
+      <article class="section" id="sec-team" data-lane="infrastructure">
+        <h3 class="section-headline">Skill &amp; team development.</h3>
+        <div class="section-ratings">
+          <div class="rating-item"><span class="rating-label">Investment</span><span class="rating-value">Low to moderate</span></div>
+          <div class="rating-item"><span class="rating-label">Effort</span><span class="rating-value">Moderate to high</span></div>
+        </div>
+
+        <p class="section-frame">Your team's capability is the variable that decides whether the operation handles what comes through the door. Cross-training so a line cook can run expo. Skill depth so the bench isn't one person deep. The operators I trust most are treating their team's capability as the variable that gets locked in before anything else.</p>
+        <button class="expand-btn"><span class="expand-label-closed">Walk me through it</span><span class="expand-label-open">Close this</span> <span class="arrow">›</span></button>
+
+        <div class="explorable">
+          <h4>Better practices</h4>
+          <p>Staff readiness isn't training in the narrow sense. It's the broader discipline of locking your team variable in before circumstances lock it for you. That means knowing who you'll have, what they can do, and what they'll need to know that they don't yet. Most operators run their team on muscle memory: the regulars know what they're doing, new hires get thrown in, and surge moments expose the gaps. The discipline is closing those gaps on purpose, with time on the calendar before the gaps matter.</p>
+
+          <h4>The work, walked through</h4>
+
+          <div class="work-step">
+            <strong>Cross-training, mapped honestly.</strong>
+            <p>Walk your roster. For every position, ask who can cover it if the regular is out. If the answer is "nobody," that's a gap. Cross-training a line cook to run expo, a server to bartend, a counter person to handle the prep window: each of those is a piece of resilience that pays off the next time someone calls in sick, surge or no surge.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>Retention, before May.</strong>
+            <p>If you're going to have retention conversations with your best people, have them now. Not in May when they've already accepted an offer somewhere else. A bonus tied to summer commitment, a path conversation, even just "I see you and I want you here" goes farther than most operators realize. The operators losing people in May are usually the ones who never had the conversation in March.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>Late-shift familiarity.</strong>
+            <p>If your operation is going to extend into late-night windows during the surge (and many will, in the path zones), your team needs to know what that looks like before they're standing in it. A trial run on a Friday or Saturday in April with extended hours and the late-night menu in place. Find the friction now, when the consequences are small.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>Peer upskilling, on purpose.</strong>
+            <p>Your best training already happens on the floor. The veteran server explaining timing to the new hire mid-shift. The cook showing another cook a technique that just clicks. The guest describing a dish in a way that would sell better than your menu copy. Most operators leave that learning accidental. The operators who do it deliberately ask one more question while it's fresh: "How did you know to do that?" The thinking behind the move is what travels; the move itself is just the symptom. Pair that with a brief post-shift moment where someone shares one thing they noticed (a peer technique, a guest line worth stealing, a question that opened up a useful conversation) and you've turned every shift into a training session that nobody had to schedule. The team you already have probably uses a group thread for scheduling. Add a separate thread for what people learned, and protect it from operational chatter. The point isn't a new system; it's making visible what's already happening.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>The morning huddle, established.</strong>
+            <p>If you don't already have a daily huddle, start one. Five minutes before service. Today's reservations, today's specials, today's known weak spots. Most operations get this for free with a strong manager; many don't. Surge is the wrong time to start the practice. Now is the right time.</p>
+          </div>
+
+          <div class="format-note">
+            <p>This applies across formats with shifting emphasis. A truck team is small enough that "cross-training" might mean two people who can both run the window and the line. A counter operation might focus on register-to-line communication. Full service has more positions and more handoffs. The principle of locking the team variable holds; the specifics scale to the operation.</p>
+          </div>
+
+          <h4>Where this connects</h4>
+          <p class="connection">A trained team is the prerequisite for everything else operational. A tightened service flow needs people who know what they're doing in it. A simplified surge menu needs a kitchen that can execute it. Without the team work, the rest of the lane is theoretical.</p>
+
+          <button class="collapse-btn">Close this section</button>
+        </div>
+      </article>
+
+      <!-- Section: Equipment Tune-up -->
+      <article class="section" id="sec-equipment" data-lane="infrastructure">
+        <h3 class="section-headline">Equipment tune-up.</h3>
+        <div class="section-ratings">
+          <div class="rating-item"><span class="rating-label">Investment</span><span class="rating-value">Variable</span></div>
+          <div class="rating-item"><span class="rating-label">Effort</span><span class="rating-value">Low to moderate</span></div>
+        </div>
+
+        <p class="section-frame">Most operators know which piece of equipment they're worried about. The walk-in compressor that sounds different than it used to. The fryer that takes longer to recover than the spec says. The hood that doesn't pull the way it should on a hot night. They know, and they've been deferring. The tune-up is taking the honest look you've been putting off: preventive service on what's marginal, recovery times measured against actual spec instead of habit, grease trap and electrical load and refrigeration capacity all looked at against what the operation actually demands. This is the work that costs less when you choose to do it than when equipment chooses for you.</p>
+        <button class="expand-btn"><span class="expand-label-closed">Walk me through it</span><span class="expand-label-open">Close this</span> <span class="arrow">›</span></button>
+
+        <div class="explorable">
+          <h4>Better practices</h4>
+          <p>Preventive equipment work is the discipline of choosing when to spend instead of letting circumstances choose for you. Every operator has equipment they've been deferring service on. They know what it is. The cost of deferring is invisible until it isn't, and when the equipment fails, it usually fails at the worst possible time: under load, on a busy night, when the replacement timeline is longest and the lost revenue is highest. The audit is the honest look that turns deferred maintenance into scheduled maintenance.</p>
+
+          <h4>The work, walked through</h4>
+
+          <div class="work-step">
+            <strong>The honest list.</strong>
+            <p>Sit down with whoever knows the equipment best (a head cook, a manager, you). Make the list of pieces you've been worried about. The compressor that sounds different. The fryer recovery time that's gotten worse. The hood that struggled on the last hot night. The electrical that tripped twice last month. Every operator has the list; most have never written it down.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>Recovery times, measured.</strong>
+            <p>For your fryers, your refrigeration, your hot-holding equipment: actual recovery times under load, measured against spec. A fryer that should recover to temperature in 90 seconds and is taking 180 is an oil-change-or-replace decision you should be making on your schedule, not the equipment's. Same for refrigeration that's not holding temp on a busy day, hot-hold that's drifting, freezers that are working harder than they should.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>Preventive service, scheduled.</strong>
+            <p>Whatever you've been deferring, schedule the service. Hood cleaning. Walk-in seal inspection. Fryer boil-out. Grease trap pumping. PM on the ice machine. Electrical inspection if you've had nuisance trips. The cost of preventive service is bounded; the cost of failure is not.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>Capacity against demand.</strong>
+            <p>Walk your equipment list against what the operation actually demands at peak. Is your refrigeration capacity adequate for your prep volumes? Is your ice machine sized for your peak service? Is your hood adequate for your cooking volume on the hottest day? Capacity that's "enough most of the time" is capacity that fails the rest of the time. Surge or no surge, knowing where you're under capacity is the conversation, even if the fix is for next year.</p>
+          </div>
+
+          <div class="format-note">
+            <p>Equipment lists differ by format. A truck has a different equipment profile than a full-service kitchen; a coffee shop is different again. The discipline (honest list, measured against spec, preventive service scheduled, capacity against demand) translates. The specifics scale. A truck operator's list might be three items; a full-service operator's might be twenty. The work is the same.</p>
+          </div>
+
+          <h4>Where this connects</h4>
+          <p class="connection">Equipment work is foundational for the operational lane to actually execute. A trained team can't run a tightened service flow on equipment that fails. A simplified surge menu still has to actually cook on the line you have. This is the literal infrastructure underneath everything else.</p>
+
+          <button class="collapse-btn">Close this section</button>
+        </div>
+      </article>
+
+      <!-- Section: Tech Stack Audit -->
+      <article class="section" id="sec-techstack" data-lane="infrastructure">
+        <h3 class="section-headline">Tech stack audit.</h3>
+        <div class="section-ratings">
+          <div class="rating-item"><span class="rating-label">Investment</span><span class="rating-value">Low</span></div>
+          <div class="rating-item"><span class="rating-label">Effort</span><span class="rating-value">Low to moderate</span></div>
+        </div>
+
+        <p class="section-frame">Most of us added the tools we use one at a time, usually under pressure. A POS upgrade here, an online ordering platform there, a scheduling app a manager liked, a loyalty program a rep sold us on, an accounting integration the bookkeeper asked for. None of it was wrong at the time, and none of it has been looked at together since. The result is a stack with overlap nobody mapped, subscriptions nobody owns, and manual work happening in the gaps that the tools we already pay for could handle.</p>
+        <button class="expand-btn"><span class="expand-label-closed">Walk me through it</span><span class="expand-label-open">Close this</span> <span class="arrow">›</span></button>
+
+        <div class="explorable">
+          <h4>Better practices</h4>
+          <p>Tech stack discipline is treating your tools as a connected system instead of a pile of individual subscriptions. Two ideas do most of the work. The first is that overlap is invisible until you write the stack down; once it's on a page, the duplicates and the unused pieces show themselves immediately. The second is that the tools you already pay for usually do more than you're asking them to. POS systems quietly added scheduling, inventory, and loyalty features over the last few years, and most operators are paying separate vendors for what's already sitting in their POS dashboard. The audit is the conversation you have with yourself, once a year, about what you're actually using and what you've quietly stopped using.</p>
+
+          <h4>The work, walked through</h4>
+
+          <div class="work-step">
+            <strong>The full inventory, written down.</strong>
+            <p>Every tool you pay for, on one page. POS and any add-ons. Online ordering. Third-party delivery integrations. Scheduling. Payroll. Loyalty. Inventory. Accounting. Email and SMS marketing. Reservation systems. Reporting and analytics. Anything billing monthly. The point isn't the perfect list; it's the list itself. Most operators have never seen their stack on a single page, and the act of writing it down is where the audit starts paying off.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>Each tool, named for what it does.</strong>
+            <p>Next to every line, write what problem the tool is solving. Plain language, one sentence. If you can't say what it's for without checking, that's already useful information. If two lines have the same answer, that's where overlap lives. If a line says "we got it for X" but X isn't a problem we still have, that's a candidate to cut.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>The obvious cleanup.</strong>
+            <p>Forgotten subscriptions. Tools your team never adopted. Free trials that started billing and never stopped. Two tools doing the same job because nobody picked one and shut down the other. This pass usually finds a couple hundred dollars a month in savings without changing a single thing about how the operation runs. Cancel them and move on.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>The POS conversation.</strong>
+            <p>Most modern POS platforms quietly added features over the last few years that overlap with what operators are paying separate vendors for. Scheduling. Loyalty. Basic inventory. Sometimes online ordering. Pull up your POS provider's full feature list, or get on a call with them, and ask what's already included in your tier. The point isn't to switch tools immediately; it's to know what you're already paying for, so the next time a contract renews you have an honest comparison to make.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>The manual work, named.</strong>
+            <p>Walk through a normal week and notice where someone is doing by hand what a tool you already own could do automatically. Hand-keying online orders into the POS. Calculating labor costs the scheduling software already calculates. Double-entering sales for the accountant. Building reports the system could generate. Each of those is either a missing integration, an unused feature, or a setting nobody turned on. None of them require new tools to fix.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>The renewal calendar.</strong>
+            <p>Every contract renewal date on a calendar you actually look at. The reason vendors get auto-renewal pricing is that operators don't see it coming. Putting renewals on a quarterly review with a thirty-day lead time turns auto-renewals back into negotiations. The same review is where you ask: what's working, what's quietly stopped working, and what's changed in the operation since the last look.</p>
+          </div>
+
+          <div class="format-note">
+            <p>The principle travels by stack size, not format. A coffee shop might have five tools; a multi-unit restaurant group might have twenty. The audit is the same conversation with different numbers. Smaller stacks find their savings in unused features faster; larger stacks find them in overlap and integration gaps. A truck or a counter operation will run leaner by default, but the renewal-calendar discipline holds across all of them.</p>
+          </div>
+
+          <h4>Where this connects</h4>
+          <p class="connection">This pairs with the equipment tune-up the same way the menu refresh pairs with substitution planning. The tune-up makes sure your physical infrastructure holds; the audit makes sure your digital infrastructure isn't quietly bleeding money or duplicating the team's work. It also feeds the virtual storefront work directly: the tools that show your operation to the guest (online ordering, reservation systems, third-party delivery) sit inside this stack, and the audit is where you decide whether they're earning their keep.</p>
+
+          <button class="collapse-btn">Close this section</button>
+        </div>
+      </article>
+      </div>
+    </div>
+  </section>
+  <!-- DISCOVERABILITY LANE -->
+  <section class="lane" data-lane="discoverability" id="lane-discoverability">
+    <div class="container-narrow">
+      <button type="button" class="lane-header lane-toggle" aria-expanded="false" aria-controls="lane-body-discoverability">
+        <div class="lane-header-text">
+          <h2 class="lane-headline">VIRTUAL STOREFRONT.</h2>
+          <p class="lane-frame">Google My Business | Your Website | Socials &amp; 3rd Party Platforms</p>
+        </div>
+        <span class="lane-toggle-icon" aria-hidden="true">+</span>
+      </button>
+
+      <div class="lane-body" id="lane-body-discoverability" data-state="closed">
+
+      <div class="safe-surge">
+        <button type="button" class="safe-surge-toggle" aria-expanded="false" aria-controls="safe-surge-discoverability">
+          <span class="safe-surge-label">SAFE SURGE PREP: GOOGLE MY BUSINESS (FOR TOURISTS) | MAPS ADVERTISING</span>
+          <span class="safe-surge-icon" aria-hidden="true">+</span>
+        </button>
+        <div class="safe-surge-body" id="safe-surge-discoverability" data-state="closed">
+
+          <div class="safe-surge-topic">
+            <h4>Google My Business, for tourists.</h4>
+            <p class="safe-surge-frame">Most operators write their GBP description for the regulars they already have. The tourist isn't searching the way a regular does. They're searching by attribute and by adjacent landmark: best happy hour near the waterfront, patio dining near the stadium, late dinner near downtown Tacoma. A pass through your profile with that phrasing in mind opens you up to searches you weren't showing up for.</p>
+
+            <div class="work-step">
+              <strong>Description, rewritten for the tourist's search.</strong>
+              <p>Read your current GBP description out loud. If it sounds like an "about us" page, it's pointed at people who already know you. Rewrite it to lead with what a tourist would search: the neighborhood, the closest landmark, the meal occasion you serve best. Keep your voice; change the angle.</p>
+            </div>
+
+            <div class="work-step">
+              <strong>Categories, primary and secondary.</strong>
+              <p>Most operators set their primary category once and never look at secondaries. Secondary categories are where tourist searches land, because tourists search broadly: bar, brewery, brunch, late-night, vegetarian-friendly. Add the secondaries that actually describe your operation. Don't add ones that don't.</p>
+            </div>
+
+            <div class="work-step">
+              <strong>Posts and photos, refreshed.</strong>
+              <p>Post something in the week before the surge starts. Recent posts signal an active operation to Google, and an active operation ranks higher in local search. Three or four photos of the actual current menu, the room as it looks now, and the staff that's there. Tourists trust recent over polished.</p>
+            </div>
+          </div>
+
+          <div class="safe-surge-topic">
+            <h4>Maps advertising, used surgically.</h4>
+            <p class="safe-surge-frame">Maps ads are the paid version of what GBP work does for free. They put your pin at the top of the map for the searches you choose, in the radius you choose, during the windows you choose. Not worth running year-round for most operators. Can be worth running during a 30-day surge window with tight targeting.</p>
+
+            <div class="work-step">
+              <strong>Set the budget cap.</strong>
+              <p>Decide the total dollar amount you'll spend on Maps ads across the surge window before you turn anything on. Not a daily cap, a total cap. Maps ads can spend faster than you'd guess if you don't set a ceiling, and chasing surge-period traffic without a ceiling is how operators end up surprised at the invoice.</p>
+            </div>
+
+            <div class="work-step">
+              <strong>Geographic and time targeting, narrow.</strong>
+              <p>Pick a tight radius. Two miles for an urban operation, five for a suburban one. Run the ads only during the hours you actually want the volume (probably not breakfast for most operators in this scenario). The narrower the targeting, the more each dollar buys.</p>
+            </div>
+
+            <div class="work-step">
+              <strong>Run for the window, then off.</strong>
+              <p>Set start and end dates that match your surge window. The ad shouldn't run before the surge starts or after it ends. Calendar the off-date the same day you set the on-date. Auto-running ads past their useful window is the most common waste in this whole approach.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+<!-- Section: Google My Business -->
+      <article class="section" id="sec-getting-noticed" data-lane="discoverability">
+        <h3 class="section-headline">Google My Business.</h3>
+        <div class="section-ratings">
+          <div class="rating-item"><span class="rating-label">Investment</span><span class="rating-value">Low</span></div>
+          <div class="rating-item"><span class="rating-label">Effort</span><span class="rating-value">Low to moderate</span></div>
+        </div>
+
+        <p class="section-frame">Your Google Business Profile is the answer Google gives when someone searches "places to eat near me" within a mile of your door. Most operators have the basics in place. Almost none have it tuned. That gap is where covers go to your competitors before you ever had a shot.</p>
+        <button class="expand-btn"><span class="expand-label-closed">Walk me through it</span><span class="expand-label-open">Close this</span> <span class="arrow">›</span></button>
+
+        <div class="explorable">
+          <h4>Better practices</h4>
+          <p>Search discoverability isn't marketing. It's hygiene. Your Google Business Profile is the answer Google gives when someone asks "where should I eat right now," and the quality of that answer is mostly under your control. Most operators set up their GBP once, years ago, and haven't touched it. The categories are wrong, the hours haven't been updated since the last time service hours changed, the photos are from the soft open, and there are reviews from 2022 that nobody ever responded to. Google reads all of that. So does the guest deciding between you and the place down the block.</p>
+
+          <h4>The work, walked through</h4>
+
+          <div class="work-step">
+            <strong>Categories and attributes, set right.</strong>
+            <p>Your primary category is the most important field on the entire profile. Get it specific. "Restaurant" is too broad; "Mexican restaurant" or "Coffee shop" or "Sandwich shop" is specific enough that Google can actually match you to the right searches. Attributes (outdoor seating, takeout, dog-friendly, accepts mobile payments) tell Google how to rank you against filtered searches. Walk every attribute and confirm it's accurate.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>Hours that match reality.</strong>
+            <p>Your hours on Google are what Google tells the guest. If they're wrong by an hour, you're either turning away covers who showed up too early or annoying guests who showed up to a closed door. Special hours for holidays matter too; a "closed" status when you're actually open kills the entire decision.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>Photos that earn the click.</strong>
+            <p>The cover photo and the first three to four photos do most of the work. They should look like the operation looks now, not how it looked at the soft open. Food photos that match what's actually on the menu. Interior photos that show the room as it is. If your photos are five years old, your discoverability is tied to what the room used to be.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>Reviews, responded to.</strong>
+            <p>Every review gets a response. Positive ones get a short thanks. Negative ones get a measured, professional reply that acknowledges the issue without arguing. Google reads response rate. So do guests scrolling through. An unresponsive profile reads as an inattentive operation.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>The Q&A section, owned.</strong>
+            <p>Most operators don't know Google has a Q&A section on their profile. Anyone can ask a question; anyone can answer it. If you don't answer first, someone else will, and they might be wrong. Walk through the questions, answer them, and seed the most common ones yourself.</p>
+          </div>
+
+          <div class="format-note">
+            <p>This applies in every format. A taco truck with a tuned GBP shows up in "near me" searches the same way a sit-down does. The cover photo for a counter operation might be the counter; for a truck, the truck itself. The discipline is the same; the visual answer changes.</p>
+          </div>
+
+          <h4>Where this connects</h4>
+          <p class="connection">This sets up the next section. Getting noticed pulls a guest's eyes to you; your virtual storefront decides whether they come in. The two pieces of work are usually done in the same week, and the foundation here also sets up the paid discoverability bet in the surge readiness section, if your location warrants it.</p>
+
+          <button class="collapse-btn">Close this section</button>
+        </div>
+      </article>
+
+      <!-- Section: Your website -->
+      <article class="section" id="sec-virtual-storefront" data-lane="discoverability">
+        <h3 class="section-headline">Your website.</h3>
+        <div class="section-ratings">
+          <div class="rating-item"><span class="rating-label">Investment</span><span class="rating-value">Low to moderate</span></div>
+          <div class="rating-item"><span class="rating-label">Effort</span><span class="rating-value">Moderate</span></div>
+        </div>
+
+        <p class="section-frame">Once someone's pointed at you, your website decides whether they come in. Most operators haven't walked their own site the way a stranger would in over a year. Slow load, broken links, a menu that doesn't match what's on the wall, contact info that's out of date. Every one of those is a cover that decided to go somewhere else.</p>
+        <button class="expand-btn"><span class="expand-label-closed">Walk me through it</span><span class="expand-label-open">Close this</span> <span class="arrow">›</span></button>
+
+        <div class="explorable">
+          <h4>Better practices</h4>
+          <p>Your virtual storefront is everything a guest sees and interacts with before they walk through the door. The website. The menu they're looking at. The ordering flow if they're picking up or having it delivered. The reservation system if you take them. Each of those is a handoff between the guest's intention and the actual visit, and every handoff has friction. The discipline is walking your own storefront, on a phone, in the same posture a stranger would, and finding what's costing you.</p>
+
+          <h4>The work, walked through</h4>
+
+          <div class="work-step">
+            <strong>The phone test, taken seriously.</strong>
+            <p>Pull out your phone, search yourself the way a stranger would, and walk the path. Did the site load fast? Is the menu readable without zooming? Are the prices current? Can you find your hours without hunting? Can you tap to call without three steps? Most operators have never done this on their own site, and the gaps are obvious the first time you do.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>The menu, current and consistent.</strong>
+            <p>Your menu lives in three or four places: your website, your Google Business Profile, your delivery platforms, and the wall inside your operation. They need to match. A menu on the website that doesn't reflect last quarter's price changes is a guest who shows up expecting one number and finds another. That's the wrong moment to surprise someone.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>The ordering flow, counted in taps.</strong>
+            <p>If you take online orders, count the taps from "I'm hungry" to "order placed." Industry research is consistent: every additional tap drops conversion. Seven taps where three would do is a lot of orders walking away. Look at where the flow asks for information you don't actually need, where it offers upsells that interrupt the path, where it forces account creation. Each of those is a friction point you can probably remove.</p>
+          </div>
+
+          <div class="work-step">
+            <strong>The integrations, talking to each other.</strong>
+            <p>Your online ordering should be talking to your POS. Your reservation system should be talking to whatever you use for guest data. When systems don't integrate, somebody has to manually bridge them, which means errors and delays and a guest experience that doesn't feel like one operation. Map what you have. Note what doesn't connect. That's a punch list.</p>
+          </div>
+
+          <div class="format-note">
+            <p>The storefront looks different by format. A counter operation may not need reservations; a truck may not need a full website (a tight Instagram presence and a current Google profile may be the whole storefront). The discipline is the same: walk what you have, on a phone, the way a stranger would, and find what's costing you.</p>
+          </div>
+
+          <h4>Where this connects</h4>
+          <p class="connection">This is the back half of discoverability. Without the work in "Getting noticed," nobody finds your storefront in the first place. Without this work, the people who find you bounce before they convert. The two pieces are one job done in two parts.</p>
+
+          <button class="collapse-btn">Close this section</button>
+        </div>
+      </article>
+
+      <!-- Section: Socials -->
+      <article class="section" id="sec-third-party-platforms" data-lane="discoverability">
+        <h3 class="section-headline">Socials &amp; 3rd party platforms.</h3>
+        <div class="section-ratings">
+          <div class="rating-item"><span class="rating-label">Investment</span><span class="rating-value">[TBD]</span></div>
+          <div class="rating-item"><span class="rating-label">Effort</span><span class="rating-value">[TBD]</span></div>
+        </div>
+        <p class="section-frame">[Pending editorial pass] The platforms you don't fully control but still rely on: social channels, third-party delivery marketplaces, review sites, reservation aggregators. Each one is a window into your operation that's open to a guest who hasn't met you yet, and most operators are running them with whatever was set up the day they signed up.</p>
+        <button class="expand-btn"><span class="expand-label-closed">Walk me through it</span><span class="expand-label-open">Close this</span> <span class="arrow">›</span></button>
+
+        <div class="explorable">
+          <h4>Better practices</h4>
+          <p>[Pending editorial pass]</p>
+
+          <h4>The work, walked through</h4>
+          <div class="work-step">
+            <strong>[Pending editorial pass]</strong>
+            <p>[Pending editorial pass]</p>
+          </div>
+
+          <h4>Where this connects</h4>
+          <p class="connection">[Pending editorial pass]</p>
+
+          <button class="collapse-btn">Close this section</button>
+        </div>
+      </article>
+      </div>
+    </div>
+  </section>
+
+
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div>Harbor Foodservice Solutions · The Operator's Playbook</div>
+    <div>
+      <a href="https://harborfoodservicesoccer26.com">harborfoodservicesoccer26.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  // =====================================================================
+  // SECTION CATALOG — single source of truth for the strategy recipe
+  // Order within each lane reflects canonical sequencing in the lane
+  // reference layer. Justifications are placeholders for pass two.
+  // =====================================================================
+  var SECTIONS = [
+    {
+      id: 'sec-getting-noticed',
+      lane: 'discoverability',
+      headline: 'Google My Business.',
+      takeaway: "A Google Business Profile that's tuned for search the way your menu is tuned for margin.",
+      whyByLead: {
+        'discoverability': "[Placeholder] Discoverability lead means GBP work comes first because it pays off fastest and feeds every other piece of the lane.",
+        'readiness':       "[Placeholder] When menu and margins lead, getting noticed still comes early; new covers earned mid-tune-up land on a tighter operation.",
+        'infrastructure':  "[Placeholder] Infrastructure lead lifts this here as the cheapest visible win to put alongside the foundational work."
+      }
+    },
+    {
+      id: 'sec-virtual-storefront',
+      lane: 'discoverability',
+      headline: 'Your website.',
+      takeaway: "A site that loads fast, says what's true, and gets out of the guest's way.",
+      whyByLead: {
+        'discoverability': "[Placeholder] The natural follow-on to GBP. Once they're pointed at you, the website decides whether they come in.",
+        'readiness':       "[Placeholder] Sits early because it converts the noticed traffic before the menu and margins work has to absorb it.",
+        'infrastructure':  "[Placeholder] Paired with the discovery foundation; both pay off without touching the kitchen or the floor."
+      }
+    },
+    {
+      id: 'sec-third-party-platforms',
+      lane: 'discoverability',
+      headline: 'Socials & 3rd party platforms.',
+      takeaway: "[Pending editorial pass] A consistent presence across the platforms you don't own but still answer for.",
+      whyByLead: {
+        'discoverability': "[Placeholder] [Pending editorial pass]",
+        'readiness':       "[Placeholder] [Pending editorial pass]",
+        'infrastructure':  "[Placeholder] [Pending editorial pass]"
+      }
+    },
+    {
+      id: 'sec-menu',
+      lane: 'readiness',
+      headline: 'Menu refresh.',
+      takeaway: 'A menu and pricing structure that reflects what your business actually is, not what it used to be.',
+      whyByLead: {
+        'discoverability': "[Placeholder] Once you know who's coming in, the menu decides whether they come back. Margin discipline holds the math together.",
+        'readiness':       "[Placeholder] Menu and margins lead starts here. The menu is where pricing, mix, and margin meet the guest.",
+        'infrastructure':  "[Placeholder] Comes mid-list because clean menu math feeds the equipment decisions downstream."
+      }
+    },
+    {
+      id: 'sec-substitution',
+      lane: 'readiness',
+      headline: 'Product substitution planning.',
+      takeaway: "An order guide you've actively reviewed, with the invisible-ingredient savings already captured.",
+      whyByLead: {
+        'discoverability': "[Placeholder] Pairs with menu refresh; once the menu is set, the order guide behind it gets tightened.",
+        'readiness':       "[Placeholder] The natural pair to menu refresh. Refresh decides what stays; substitution tightens what it costs.",
+        'infrastructure':  "[Placeholder] Comes mid-list; clean order guide math sets up the equipment and team decisions downstream."
+      }
+    },
+    {
+      id: 'sec-team',
+      lane: 'infrastructure',
+      headline: 'Skill & team development.',
+      takeaway: "A team whose capability is built on purpose, not assembled in the moment.",
+      whyByLead: {
+        'discoverability': "[Placeholder] Once discovery is doing its job, the team has to be ready for the covers that show up.",
+        'readiness':       "[Placeholder] The team is what executes the menu and protects the margin; it sits in infrastructure because the people are the load-bearing layer.",
+        'infrastructure':  "[Placeholder] Infrastructure lead starts here. Without the team, the equipment work behind it is theoretical."
+      }
+    },
+    {
+      id: 'sec-equipment',
+      lane: 'infrastructure',
+      headline: 'Equipment tune-up.',
+      takeaway: 'Equipment you trust under load instead of hope holds up.',
+      whyByLead: {
+        'discoverability': "[Placeholder] The tail of a discovery-led plan; equipment work is the safety net under everything else, not the lead.",
+        'readiness':       "[Placeholder] Comes near the end; menu and margins discipline without equipment that holds is discipline on borrowed time.",
+        'infrastructure':  "[Placeholder] The honest look behind the team work. Trained people on broken equipment is its own kind of failure."
+      }
+    },
+    {
+      id: 'sec-techstack',
+      lane: 'infrastructure',
+      headline: 'Tech stack audit.',
+      takeaway: "A tool stack you've actually mapped, with the duplicates and the unused features dealt with.",
+      whyByLead: {
+        'discoverability': "[Placeholder] Pairs with the discovery work; the tools showing your operation to guests live inside this stack.",
+        'readiness':       "[Placeholder] Cleaning up overlap and finding unused features turns silent monthly bleed back into margin.",
+        'infrastructure':  "[Placeholder] The digital pair to the equipment tune-up. Physical infrastructure plus tool stack is the full read."
+      }
+    }
+  ];
+
+  var LANE_NAMES = {
+    'discoverability': 'Virtual Storefront',
+    'readiness': 'Menu & Margins',
+    'infrastructure': 'Infrastructure'
+  };
+
+  var LANE_CLASS = {
+    'discoverability': 'lane-1',
+    'readiness': 'lane-2',
+    'infrastructure': 'lane-3'
+  };
+
+  // =====================================================================
+  // STATE
+  // =====================================================================
+  var rankOrder = [];           // e.g. ['readiness','discoverability','infrastructure']
+  var deselected = {};          // map of section id -> true if deselected
+
+  var tiles = document.querySelectorAll('.tile');
+  var rerankBtn = document.getElementById('rerank');
+  var recipe = document.getElementById('recipe');
+  var recipeLead = document.getElementById('recipeLead');
+  var recipeList = document.getElementById('recipeList');
+  var recipeStatus = document.getElementById('recipeStatus');
+  var copyBtn = document.getElementById('copyRecipe');
+  var downloadBtn = document.getElementById('downloadRecipe');
+
+  var hasStrategy = tiles.length > 0 && rerankBtn && recipe && recipeLead && recipeList && copyBtn && downloadBtn;
+
+  // =====================================================================
+  // PERSISTENCE
+  // =====================================================================
+  function saveState() {
+    try {
+      sessionStorage.setItem('playbook-rank', JSON.stringify(rankOrder));
+      sessionStorage.setItem('playbook-deselected', JSON.stringify(deselected));
+    } catch (e) {}
+  }
+
+  function loadState() {
+    try {
+      var rank = sessionStorage.getItem('playbook-rank');
+      var de = sessionStorage.getItem('playbook-deselected');
+      if (rank) {
+        var parsed = JSON.parse(rank);
+        if (Array.isArray(parsed) && parsed.length <= 3) rankOrder = parsed;
+      }
+      if (de) {
+        var parsedDe = JSON.parse(de);
+        if (parsedDe && typeof parsedDe === 'object') deselected = parsedDe;
+      }
+    } catch (e) {}
+  }
+
+  // =====================================================================
+  // TILE RENDERING (rank numbers + ranked styling)
+  // =====================================================================
+  function renderTiles() {
+    tiles.forEach(function(t) {
+      var lane = t.dataset.lane;
+      var idx = rankOrder.indexOf(lane);
+      var rankEl = t.querySelector('.tile-rank');
+      if (idx >= 0) {
+        t.classList.add('ranked');
+        rankEl.textContent = (idx + 1);
+        t.dataset.rank = (idx + 1).toString();
+      } else {
+        t.classList.remove('ranked');
+        rankEl.textContent = '';
+        t.dataset.rank = '0';
+      }
+    });
+  }
+
+  // =====================================================================
+  // STRATEGY RECIPE
+  // =====================================================================
+  function sortedSectionsByRank() {
+    // Strict-by-rank: every section from lane 1, then lane 2, then lane 3.
+    // Within each lane, sections preserve their canonical catalog order.
+    var out = [];
+    rankOrder.forEach(function(lane) {
+      SECTIONS.forEach(function(sec) {
+        if (sec.lane === lane) out.push(sec);
+      });
+    });
+    return out;
+  }
+
+  function buildLeadHTML() {
+    var lead = rankOrder[0];
+    var second = rankOrder[1];
+    var third = rankOrder[2];
+    function chip(key) {
+      return "<span class='lane-name " + LANE_CLASS[key] + "'>" + LANE_NAMES[key].toLowerCase() + "</span>";
+    }
+    return "You're leading with " + chip(lead) + ", then " + chip(second) + ", then " + chip(third) + ". Below is the work in that order, drawn from across the lanes above. Each item explains why it sits where it does. Anything that doesn't fit your situation, deselect. What's left is yours to take.";
+  }
+
+  function renderRecipe() {
+    if (rankOrder.length !== 3) {
+      recipe.hidden = true;
+      rerankBtn.hidden = true;
+      return;
+    }
+
+    recipe.hidden = false;
+    rerankBtn.hidden = false;
+    recipeLead.innerHTML = buildLeadHTML();
+
+    var sections = sortedSectionsByRank();
+    var lead = rankOrder[0];
+    var html = '';
+    sections.forEach(function(sec) {
+      var why = sec.whyByLead[lead] || '';
+      var isDeselected = !!deselected[sec.id];
+      html += "<li class='recipe-item" + (isDeselected ? ' deselected' : '') + "' data-lane='" + sec.lane + "' data-id='" + sec.id + "'>";
+      html += "<div class='recipe-head'>";
+      html += "<div class='recipe-head-left'>";
+      html += "<span class='recipe-lane-chip'>" + LANE_NAMES[sec.lane] + "</span>";
+      html += "<div class='recipe-headline'>" + escapeHtml(sec.headline) + "</div>";
+      html += "</div>";
+      html += "<button type='button' class='recipe-toggle' data-id='" + sec.id + "'>" + (isDeselected ? 'Add back' : 'Drop this') + "</button>";
+      html += "</div>";
+      html += "<p class='recipe-takeaway'>" + escapeHtml(sec.takeaway) + "</p>";
+      html += "<div class='recipe-why'>";
+      html += "<span class='recipe-why-label'>Why this is here</span>";
+      html += escapeHtml(why);
+      html += "</div>";
+      html += "<a class='recipe-anchor' href='#" + sec.id + "'>Read the full section above ›</a>";
+      html += "</li>";
+    });
+    recipeList.innerHTML = html;
+  }
+
+  function escapeHtml(s) {
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // =====================================================================
+  // EVENTS — TILES
+  // =====================================================================
+  if (hasStrategy) {
+    tiles.forEach(function(t) {
+      t.addEventListener('click', function() {
+        var lane = t.dataset.lane;
+        var existing = rankOrder.indexOf(lane);
+        if (existing >= 0) {
+          rankOrder.splice(existing, 1);
+        } else {
+          if (rankOrder.length < 3) rankOrder.push(lane);
+        }
+        renderTiles();
+        renderRecipe();
+        saveState();
+      });
+    });
+
+    rerankBtn.addEventListener('click', function() {
+      rankOrder = [];
+      deselected = {};
+      renderTiles();
+      renderRecipe();
+      try {
+        sessionStorage.removeItem('playbook-rank');
+        sessionStorage.removeItem('playbook-deselected');
+      } catch (e) {}
+      var strategy = document.getElementById('strategy');
+      if (strategy) strategy.scrollIntoView({behavior: 'smooth', block: 'start'});
+    });
+
+    // =====================================================================
+    // EVENTS — RECIPE TOGGLES & ANCHORS
+    // =====================================================================
+    recipeList.addEventListener('click', function(e) {
+      var toggle = e.target.closest('.recipe-toggle');
+      if (toggle) {
+        var id = toggle.dataset.id;
+        deselected[id] = !deselected[id];
+        if (!deselected[id]) delete deselected[id];
+        renderRecipe();
+        saveState();
+        return;
+      }
+      var anchor = e.target.closest('.recipe-anchor');
+      if (anchor) {
+        // Let the default jump happen, then auto-expand the target section.
+        var href = anchor.getAttribute('href');
+        if (href && href.charAt(0) === '#') {
+          var target = document.getElementById(href.slice(1));
+          if (target && target.classList.contains('section')) {
+            target.classList.add('expanded');
+          }
+        }
+      }
+    });
+
+    copyBtn.addEventListener('click', function() {
+      var text = activeRecipeForExport();
+      var done = function(ok) {
+        recipeStatus.textContent = ok ? 'Copied to clipboard.' : 'Copy failed. Try selecting and copying manually.';
+        setTimeout(function() { recipeStatus.textContent = ''; }, 3000);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() { done(true); }, function() { fallbackCopy(text, done); });
+      } else {
+        fallbackCopy(text, done);
+      }
+    });
+
+    downloadBtn.addEventListener('click', function() {
+      recipeStatus.textContent = 'Opening print dialog. Choose "Save as PDF" as the destination.';
+      setTimeout(function() { recipeStatus.textContent = ''; }, 5000);
+      window.print();
+    });
+  }
+
+  // =====================================================================
+  // RECIPE ACTIONS — COPY & DOWNLOAD (helpers)
+  // =====================================================================
+  function activeRecipeForExport() {
+    var sections = sortedSectionsByRank();
+    var lead = rankOrder[0];
+    var lines = [];
+    lines.push("Your World Cup Operator's Playbook — Strategy Recipe");
+    lines.push("");
+    lines.push("Priority order: " + rankOrder.map(function(k) { return LANE_NAMES[k]; }).join(' → '));
+    lines.push("");
+    var n = 0;
+    sections.forEach(function(sec) {
+      if (deselected[sec.id]) return;
+      n++;
+      lines.push(n + ". " + sec.headline + "  [" + LANE_NAMES[sec.lane] + "]");
+      lines.push("   " + sec.takeaway);
+      lines.push("   Why this is here: " + (sec.whyByLead[lead] || ''));
+      lines.push("");
+    });
+    if (n === 0) {
+      lines.push("(No sections selected.)");
+    }
+    return lines.join('\n');
+  }
+
+  function fallbackCopy(text, done) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      done(ok);
+    } catch (e) {
+      done(false);
+    }
+  }
+
+  // =====================================================================
+  // EXPANDABLE SECTIONS (lane reference + surge bets)
+  // =====================================================================
+  document.addEventListener('click', function(e) {
+    if (e.target.closest('.expand-btn')) {
+      var btn = e.target.closest('.expand-btn');
+      var section = btn.closest('.section');
+      if (section) section.classList.toggle('expanded');
+    }
+    if (e.target.classList.contains('collapse-btn')) {
+      var section = e.target.closest('.section');
+      if (section) {
+        section.classList.remove('expanded');
+        var headline = section.querySelector('.section-headline');
+        if (headline) headline.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+    }
+    var pkToggle = e.target.closest('.peekaboo-toggle');
+    if (pkToggle) {
+      var targetId = pkToggle.getAttribute('aria-controls');
+      var content = document.getElementById(targetId);
+      if (!content) return;
+      var open = pkToggle.getAttribute('aria-expanded') === 'true';
+      if (open) {
+        pkToggle.setAttribute('aria-expanded', 'false');
+        content.setAttribute('data-state', 'closed');
+      } else {
+        pkToggle.setAttribute('aria-expanded', 'true');
+        content.setAttribute('data-state', 'open');
+      }
+      try {
+        sessionStorage.setItem('peekaboo:' + targetId, open ? 'closed' : 'open');
+      } catch (ex) {}
+    }
+
+    var laneToggle = e.target.closest('.lane-toggle');
+    if (laneToggle) {
+      var laneTargetId = laneToggle.getAttribute('aria-controls');
+      var laneBody = document.getElementById(laneTargetId);
+      if (!laneBody) return;
+      var laneOpen = laneToggle.getAttribute('aria-expanded') === 'true';
+      if (laneOpen) {
+        laneToggle.setAttribute('aria-expanded', 'false');
+        laneBody.setAttribute('data-state', 'closed');
+      } else {
+        laneToggle.setAttribute('aria-expanded', 'true');
+        laneBody.setAttribute('data-state', 'open');
+      }
+      try {
+        sessionStorage.setItem('lane:' + laneTargetId, laneOpen ? 'closed' : 'open');
+      } catch (ex) {}
+    }
+
+    var ssToggle = e.target.closest('.safe-surge-toggle');
+    if (ssToggle) {
+      var ssTargetId = ssToggle.getAttribute('aria-controls');
+      var ssBody = document.getElementById(ssTargetId);
+      if (!ssBody) return;
+      var ssOpen = ssToggle.getAttribute('aria-expanded') === 'true';
+      if (ssOpen) {
+        ssToggle.setAttribute('aria-expanded', 'false');
+        ssBody.setAttribute('data-state', 'closed');
+      } else {
+        ssToggle.setAttribute('aria-expanded', 'true');
+        ssBody.setAttribute('data-state', 'open');
+      }
+      try {
+        sessionStorage.setItem('safe-surge:' + ssTargetId, ssOpen ? 'closed' : 'open');
+      } catch (ex) {}
+    }
+  });
+
+  // Restore peekaboo state on load
+  (function restorePeekaboos() {
+    var toggles = document.querySelectorAll('.peekaboo-toggle');
+    toggles.forEach(function(t) {
+      var id = t.getAttribute('aria-controls');
+      try {
+        var state = sessionStorage.getItem('peekaboo:' + id);
+        if (state === 'open') {
+          t.setAttribute('aria-expanded', 'true');
+          var content = document.getElementById(id);
+          if (content) content.setAttribute('data-state', 'open');
+        }
+      } catch (ex) {}
+    });
+  })();
+
+  // Restore lane state on load
+  (function restoreLanes() {
+    var laneToggles = document.querySelectorAll('.lane-toggle');
+    laneToggles.forEach(function(t) {
+      var id = t.getAttribute('aria-controls');
+      try {
+        var state = sessionStorage.getItem('lane:' + id);
+        if (state === 'open') {
+          t.setAttribute('aria-expanded', 'true');
+          var body = document.getElementById(id);
+          if (body) body.setAttribute('data-state', 'open');
+        }
+      } catch (ex) {}
+    });
+  })();
+
+  // =====================================================================
+  // INIT
+  // =====================================================================
+  if (hasStrategy) {
+    loadState();
+    renderTiles();
+    renderRecipe();
+  }
+})();
+</script>
+
+<!-- Sticky section reader (appears when a section is expanded) -->
+<div class="section-reader" id="sectionReader" role="toolbar" aria-label="Section reader navigation">
+  <div class="section-reader-inner">
+    <div class="section-reader-title">
+      <div class="section-reader-eyebrow" id="sectionReaderEyebrow">Lane</div>
+      <div class="section-reader-headline" id="sectionReaderHeadline">Section</div>
+    </div>
+    <div class="section-reader-controls">
+      <button type="button" class="section-reader-btn section-reader-arrow" id="sectionReaderPrev" aria-label="Previous section">‹</button>
+      <button type="button" class="section-reader-btn section-reader-arrow" id="sectionReaderNext" aria-label="Next section">›</button>
+      <button type="button" class="section-reader-btn section-reader-btn--close section-reader-btn--close-text" id="sectionReaderClose">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var reader = document.getElementById('sectionReader');
+  var eyebrowEl = document.getElementById('sectionReaderEyebrow');
+  var headlineEl = document.getElementById('sectionReaderHeadline');
+  var prevBtn = document.getElementById('sectionReaderPrev');
+  var nextBtn = document.getElementById('sectionReaderNext');
+  var closeBtn = document.getElementById('sectionReaderClose');
+  if (!reader) return;
+
+  var LANE_LABELS = {
+    'readiness': 'Menu & Margins',
+    'infrastructure': 'Infrastructure',
+    'discoverability': 'Virtual Storefront'
+  };
+
+  function getOpenSection() {
+    return document.querySelector('.section.expanded');
+  }
+
+  function getLaneSections(section) {
+    var lane = section && section.closest('.lane');
+    if (!lane) return [];
+    return Array.prototype.slice.call(lane.querySelectorAll('.section'));
+  }
+
+  function getSiblingInLane(section, dir) {
+    var siblings = getLaneSections(section);
+    var idx = siblings.indexOf(section);
+    if (idx === -1) return null;
+    var targetIdx = idx + dir;
+    if (targetIdx < 0 || targetIdx >= siblings.length) return null;
+    return siblings[targetIdx];
+  }
+
+  function updateReaderState() {
+    var open = getOpenSection();
+    if (!open) {
+      reader.classList.remove('is-visible');
+      return;
+    }
+    var lane = open.closest('.lane');
+    var laneKey = lane ? lane.getAttribute('data-lane') : '';
+    var laneLabel = LANE_LABELS[laneKey] || '';
+    var headline = open.querySelector('.section-headline');
+    var headlineText = headline ? headline.textContent : '';
+
+    eyebrowEl.textContent = laneLabel;
+    headlineEl.textContent = headlineText.replace(/\.$/, '');
+
+    // Color the eyebrow and top stroke to match lane color
+    if (lane) {
+      var styles = getComputedStyle(lane);
+      var laneColor = styles.getPropertyValue('--lane-color').trim();
+      if (laneColor) {
+        reader.style.setProperty('--lane-color', laneColor);
+      } else {
+        reader.style.removeProperty('--lane-color');
+      }
+    }
+
+    var prev = getSiblingInLane(open, -1);
+    var next = getSiblingInLane(open, 1);
+    prevBtn.disabled = !prev;
+    nextBtn.disabled = !next;
+
+    reader.classList.add('is-visible');
+  }
+
+  function scrollToSection(section) {
+    var headline = section.querySelector('.section-headline');
+    if (headline) headline.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+
+  function navigate(dir) {
+    var open = getOpenSection();
+    if (!open) return;
+    var target = getSiblingInLane(open, dir);
+    if (!target) return;
+    open.classList.remove('expanded');
+    target.classList.add('expanded');
+    // Scroll lands on the new section's headline; the reader bar updates via mutation observer.
+    scrollToSection(target);
+  }
+
+  prevBtn.addEventListener('click', function() { navigate(-1); });
+  nextBtn.addEventListener('click', function() { navigate(1); });
+
+  closeBtn.addEventListener('click', function() {
+    var open = getOpenSection();
+    if (!open) return;
+    open.classList.remove('expanded');
+    scrollToSection(open);
+  });
+
+  // Watch for class changes on sections (expanded toggled by main click handler).
+  var observer = new MutationObserver(function(mutations) {
+    var relevant = mutations.some(function(m) {
+      return m.type === 'attributes' && m.attributeName === 'class' && m.target.classList.contains('section');
+    });
+    if (relevant) updateReaderState();
+  });
+  document.querySelectorAll('.section').forEach(function(s) {
+    observer.observe(s, {attributes: true, attributeFilter: ['class']});
+  });
+
+  // When a section expands via the main click handler, scroll its headline to top.
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.expand-btn');
+    if (!btn) return;
+    var section = btn.closest('.section');
+    if (!section) return;
+    requestAnimationFrame(function() {
+      if (section.classList.contains('expanded')) {
+        scrollToSection(section);
+      }
+    });
+  });
+
+  // Escape key closes the open section.
+  document.addEventListener('keydown', function(e) {
+    if (e.key !== 'Escape') return;
+    var open = getOpenSection();
+    if (!open) return;
+    open.classList.remove('expanded');
+    scrollToSection(open);
+  });
+})();
+</script>
+
+</body>
+</html>
